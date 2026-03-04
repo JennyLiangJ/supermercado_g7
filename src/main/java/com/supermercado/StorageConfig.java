@@ -1,3 +1,4 @@
+// Esta es la clase de StorageConfig java
 package com.supermercado;
 
 import com.google.auth.oauth2.GoogleCredentials;
