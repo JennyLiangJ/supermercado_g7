@@ -1,0 +1,46 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.supermercado.domain;
+
+import jakarta.persistence.Column;
+import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.List;
+
+@Data
+@Entity
+@Table(name="categoria")
+
+public class Categoria implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_categoria")
+    private Integer idCategoria;
+    
+    @Column(unique=true, nullable=false, length=50)
+    @NotNull
+    @Size(max=50)
+    private String Descripcion;
+    
+    @Column(length=1024)
+    @Size(max=1024)
+    private String rutaImagen;
+    
+    private boolean activo;
+    
+    @OneToMany(mappedBy="categoria")
+    private List<Producto> productos;
+}
+
