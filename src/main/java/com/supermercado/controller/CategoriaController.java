@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+//Categoria Controller funcional
 package com.supermercado.controller;
 import com.supermercado.domain.Categoria;
 import com.supermercado.service.CategoriaService;
