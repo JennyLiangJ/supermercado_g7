@@ -57,11 +57,10 @@
     </div>
 </section>
 
-<!-- Fragmento 3: Llamado a un formulario con parámetros y su tarea #2 -->
+<!-- Fragmento 3: Sección para buscar el buscador -->
 
-<section th:fragment="consultas" class="row row-cols-4 justify-content-center p-2">
+<section th:fragment="consultas" class="d-flex justify-content-center p-4">
     <div th:replace="~{consultas/fragmentos :: formConsulta('warning',#{consultas.precio},'/consultas/busquedaPrecio')}"/>
-
 </section>
 
 <div th:fragment="formConsulta(colorForm, textForm, accionForm)">
@@ -91,7 +90,7 @@
             <div class='card-body text-center'>
                 <button type='submit' class='btn text-white'
                         th:classappend="${'btn-'+colorForm}">
-                    <i class='fa-solid fa-magnifying-glass'></i> [[${textForm}]]
+                    <i class='fa-solid fa-magnifying-glass'></i> [[#{consulta.buscar}]]
                 </button>
             </div>  
         </div>

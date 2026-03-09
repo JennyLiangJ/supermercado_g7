@@ -27,7 +27,7 @@ public class ConsultaController {
     
     //Consulta Derivada
     @PostMapping("/busquedaPrecio")
-    public String consultaDerivada(@RequestParam() double precioInf,
+    public String busquedaPrecio(@RequestParam() double precioInf,
             @RequestParam() double precioSup,
             Model model) {
         var productos = productoService.consultaDerivada(precioInf, precioSup);
