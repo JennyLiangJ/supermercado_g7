@@ -1,4 +1,4 @@
-<!-- Fragmento #1 que irá en el head de todas las páginas, así se incluye todo lo necesario de configuración-->
+<!-- Fragmento #1 head de la-->
 <head th:fragment="head">
     <title>SuperMora</title>
     <meta charset="UTF-8"/>
@@ -16,7 +16,7 @@
 </head>
 
 
-<!-- Fragmento #2  define el encabezado de las páginas, en concreto el menú y enlaces rápidos -->
+<!-- Fragmento #2 encabezado de las página -->
 <header th:fragment="header" class="header">
     <nav class="navbar navbar-expand-sm p-0">
         <div class="container">                    
@@ -33,8 +33,7 @@
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/consultas/listado}">Busqueda</a></li>                                
 
                     <!-- ADMINISTRACION COMENTADO PARA QUE NO SALGA AHI -->
-                    <!--
-                    <li class="nav-item dropdown">
+                    <!--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             [[#{plantilla.admin}]]</a>
                         <ul class="dropdown-menu">
@@ -52,8 +51,7 @@
                             </li>
                             <li><a class="dropdown-item" th:href="@{/constante/listado}">[[#{plantilla.constantes}]]</a></li>
                         </ul>
-                    </li>
-                    -->
+                    </li>-->
                 </ul>
 
                 <ul class="navbar-nav">
@@ -86,6 +84,46 @@
     </section>
 </header>
 
+<!-- Fragmento #3  footer -->
 <footer th:fragment="footer" class="p-2 mt-5 bg-primary text-white">
     <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p>
 </footer>
+
+<!-- Fragmentos #4 Toast -->
+<section th:fragment="mostrarToast">
+    <div aria-live="polite" aria-atomic="true" 
+         class="position-fixed top-50 start-50 translate-middle" style="z-index: 1080;">                
+        <div th:if="${error}" class="toast show"
+             role="alert"
+             aria-live="assertive"                     
+             aria-atomic="true"
+             data-bs-autohide="true">
+            <div class="toast-header text-white bg-danger">
+                <i class="fa-solid fa-bomb"></i> <strong clas=me-auto> [[#{error}]]</strong>
+            </div>
+            <div class="toast-body">
+                <p>[[${error}]]</p>
+                <div class="mt-2 pt-2 border-top text-center">
+                    <button type="button" class="btn btn-secondary btn-sm" 
+                            data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
+                </div>
+            </div>
+        </div>
+        <div th:if="${todoOk}" class="toast show"
+             role="status"
+             aria-live="polite"
+             aria-atomic="true"
+             data-bs-autohide="true">
+            <div class="toast-header text-white bg-success">
+                <i class="fa-solid fa-square-check"></i> <strong clas=me-auto> [[#{atencion}]]</strong>
+            </div>
+            <div class="toast-body">
+                <p>[[${todoOk}]]</p>
+                <div class="mt-2 pt-2 border-top text-center">
+                    <button type="button" class="btn btn-secondary btn-sm" 
+                            data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

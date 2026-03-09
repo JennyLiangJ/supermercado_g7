@@ -26,7 +26,7 @@ public class ConsultaController {
     }
     
     //Consulta Derivada
-    @PostMapping("/consultaDerivada")
+    @PostMapping("/busquedaPrecio")
     public String consultaDerivada(@RequestParam() double precioInf,
             @RequestParam() double precioSup,
             Model model) {
