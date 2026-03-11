@@ -89,7 +89,7 @@
                                     <th>[[#{producto.descripcion}]]</th>
                                     <th>[[#{producto.precio}]]</th>
                                     <th>[[#{producto.existencias}]]</th>
-                                    <th>[[#{producto.total}]]</th>
+                                    <!--<th>[[#{producto.total}]]</th>-->
                                     <th>[[#{producto.imagen}]]</th>
                                     <th>[[#{producto.categoria}]]</th>
                                     <th>[[#{producto.activo}]]</th>
@@ -102,7 +102,7 @@
                                     <td>[[${p.descripcion}]]</td>
                                     <td>[[${p.precio}]]</td>
                                     <td>[[${p.existencias}]]</td>
-                                    <td>[[${p.precio*p.existencias}]]</td>
+                                    <!--<td>[[${p.precio*p.existencias}]]</td>-->
                                     <td><img th:src="@{${p.rutaImagen}}" alt="noData" height="75"/></td>
                                     <td>[[${p.categoria.descripcion}]]</td>
                                     <td th:text="${p.activo} ? 'Activa':'Inactiva'"></td>
