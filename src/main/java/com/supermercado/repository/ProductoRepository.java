@@ -15,8 +15,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
+
     public List<Producto> findByActivoTrue();
-    
+
     //Consulta Derivada para recuperar los productos de un rango de precios, ordenados por precio ascendente
     public List<Producto> findByPrecioBetweenOrderByPrecioAsc(double precioInf, double precioSup);
+    
+    //Consulta Derivada para buscar productos por nombre
+    public List<Producto> findByDescripcionContainingIgnoreCaseOrderByDescripcionAsc(String descripcion);
+
 }

@@ -69,10 +69,15 @@ public class ProductoService {
             throw new IllegalStateException("No se puede eliminar la producto. Tiene datos asociados.", e);
         }
     }
-    
-     //Se llama a la consulta derivada
+
+    //Se llama a la consulta derivada
     @Transactional(readOnly = true)
     public List<Producto> consultaDerivada(double precioInf, double precioSup) {
         return productoRepository.findByPrecioBetweenOrderByPrecioAsc(precioInf, precioSup);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Producto> consultaPorNombre(String descripcion) {
+        return productoRepository.findByDescripcionContainingIgnoreCaseOrderByDescripcionAsc(descripcion);
     }
 }

@@ -24,7 +24,7 @@ public class ConsultaController {
         model.addAttribute("productos", productos);
         return "/consultas/listado";
     }
-    
+
     //Consulta Derivada
     @PostMapping("/busquedaPrecio")
     public String busquedaPrecio(@RequestParam() double precioInf,
@@ -36,6 +36,16 @@ public class ConsultaController {
         model.addAttribute("precioSup", precioSup);
         return "/consultas/listado";
     }
-    
-    
+
+    @PostMapping("/consultaNombre")
+    public String consultaNombre(@RequestParam() String descripcion,
+            Model model) {
+
+        var productos = productoService.consultaPorNombre(descripcion);
+
+        model.addAttribute("productos", productos);
+        model.addAttribute("nombre", descripcion);
+
+        return "/consultas/listado";
+    }
 }
