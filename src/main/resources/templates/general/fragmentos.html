@@ -24,15 +24,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
-
-                    <!-- CAMBIO CONSULTAS A BUSQUEDA -->
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/consultas/listado}">[[#{consulta.buscar}]]</a></li>                                
-
-                    <!-- ADMINISTRACION COMENTADO PARA QUE NO SALGA AHI -->
-                    <!--<li class="nav-item dropdown">
+                    <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')" >
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             [[#{plantilla.admin}]]</a>
                         <ul class="dropdown-menu">
@@ -50,7 +46,7 @@
                             </li>
                             <li><a class="dropdown-item" th:href="@{/constante/listado}">[[#{plantilla.constantes}]]</a></li>
                         </ul>
-                    </li>-->
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav">
@@ -66,7 +62,36 @@
                     </li>
                 </ul>
 
-                <div id="resultBlock"></div>         
+                <div id="resultBlock">
+                </div>
+
+                <!-- Si no esta autenticado, para hacer login -->
+                <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span class="ms-1">Login</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Si esta autenticado -->
+                <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                    <li class="nav-item my-auto">
+                        <a class="nav-link">
+                            <img th:src="@{${session.imagenUsuario}}" alt="..."
+                                 height="40" class="rounded-circle"/>
+                            <span sec:authentication="name" class="ms-1"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item my-auto">
+                        <form method="post" th:action="@{/logout}">
+                            <button class="btn nav-link" type="submit">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="ms-1">Logout</span>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
 
             </div>
         </div>
