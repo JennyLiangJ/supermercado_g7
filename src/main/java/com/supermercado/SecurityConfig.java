@@ -36,14 +36,25 @@ public class SecurityConfig {
         var rutas = rutaService.getRutas();
 
         http.authorizeHttpRequests(request -> {
+
+            request.requestMatchers(
+                    "/images/**",
+                    "/css/**",
+                    "/js/**",
+                    "/webjars/**",
+                    "/fav/**"
+            ).permitAll();
+
             for (Ruta ruta : rutas) {
                 if (ruta.isRequiereRol()) {
-                    request.requestMatchers(ruta.getRuta()).hasRole(ruta.getRol().getRol());
+                    request.requestMatchers(ruta.getRuta())
+                            .hasRole(ruta.getRol().getRol());
                 } else {
-                    request.requestMatchers(ruta.getRuta()).permitAll();
+                    request.requestMatchers(ruta.getRuta())
+                            .permitAll();
                 }
             }
-
+            
             request.anyRequest().authenticated();
         });
 
