@@ -13,10 +13,12 @@
     <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> 
     <script th:src="@{/js/rutinas.js}"></script>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 
 <!-- Fragmento #2 encabezado de las página -->
-<header th:fragment="header" class="header">
+<header th:fragment="header" class="header d-print-none">
     <nav class="navbar navbar-expand-sm p-0">
         <div class="container">                    
             <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.inicio}]]</a>
